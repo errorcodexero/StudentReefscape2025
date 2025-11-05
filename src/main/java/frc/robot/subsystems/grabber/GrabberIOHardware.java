@@ -1,3 +1,5 @@
-public class GrabberIO {
+package frc.robot.subsystems.grabber;
+
+public class GrabberIOHardware {
     
 }
