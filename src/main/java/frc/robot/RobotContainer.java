@@ -33,6 +33,7 @@ import frc.robot.subsystems.drive.GyroIOPigeon2;
 import frc.robot.subsystems.drive.ModuleIO;
 import frc.robot.subsystems.drive.ModuleIOSim;
 import frc.robot.subsystems.drive.ModuleIOTalonFX;
+import frc.robot.subsystems.manipulator.Manipulator;
 
 /**
 * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -44,6 +45,8 @@ public class RobotContainer {
 
     // Subsystems
     private final Drive drive_;
+
+    private final Manipulator manipulator_;
     
     // Controller
     private final CommandXboxController gamepad_ = new CommandXboxController(0);
@@ -63,6 +66,8 @@ public class RobotContainer {
                         new ModuleIOTalonFX(TunerConstants.FrontRight),
                         new ModuleIOTalonFX(TunerConstants.BackLeft),
                         new ModuleIOTalonFX(TunerConstants.BackRight));
+
+                manipulator_ = new Manipulator();
                     
                 break;
             
@@ -75,6 +80,8 @@ public class RobotContainer {
                         new ModuleIOSim(TunerConstants.FrontRight),
                         new ModuleIOSim(TunerConstants.BackLeft),
                         new ModuleIOSim(TunerConstants.BackRight));
+
+                manipulator_ = new Manipulator();
                     
                 break;
             
@@ -88,6 +95,7 @@ public class RobotContainer {
                         new ModuleIO() {},
                         new ModuleIO() {});
                 
+                manipulator_ = new Manipulator();
                 break;
         }
         
