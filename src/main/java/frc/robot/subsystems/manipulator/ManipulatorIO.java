@@ -1,5 +1,9 @@
 package frc.robot.subsystems.manipulator;
+import org.littletonrobotics.junction.AutoLog;
 
-public interface ManipulatorIO {
-    
+public interface ManipulatorIO  {
+  @AutoLog
+   public static class ManipulatorIOInputs {
+   
+   }
 }
