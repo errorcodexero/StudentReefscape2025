@@ -34,6 +34,7 @@ import frc.robot.subsystems.drive.ModuleIO;
 import frc.robot.subsystems.drive.ModuleIOSim;
 import frc.robot.subsystems.drive.ModuleIOTalonFX;
 import frc.robot.subsystems.manipulator.Manipulator;
+import frc.robot.subsystems.manipulator.ManipulatorIO;
 
 /**
 * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -67,7 +68,7 @@ public class RobotContainer {
                         new ModuleIOTalonFX(TunerConstants.BackLeft),
                         new ModuleIOTalonFX(TunerConstants.BackRight));
 
-                manipulator_ = new Manipulator();
+                manipulator_ = new Manipulator(new ManipulatorIO() {});
                     
                 break;
             
@@ -81,7 +82,7 @@ public class RobotContainer {
                         new ModuleIOSim(TunerConstants.BackLeft),
                         new ModuleIOSim(TunerConstants.BackRight));
 
-                manipulator_ = new Manipulator();
+                manipulator_ = new Manipulator(new ManipulatorIO() {});
                     
                 break;
             
@@ -95,7 +96,7 @@ public class RobotContainer {
                         new ModuleIO() {},
                         new ModuleIO() {});
                 
-                manipulator_ = new Manipulator();
+                manipulator_ = new Manipulator(new ManipulatorIO() {});
                 break;
         }
         
