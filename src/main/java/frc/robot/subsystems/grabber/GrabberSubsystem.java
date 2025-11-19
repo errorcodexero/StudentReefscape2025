@@ -29,7 +29,7 @@ public class GrabberSubsystem extends SubsystemBase{
     private final GrabberIO io_;
     //Figure out grabber target rotation
     //Using 1 as a placeholder for now
-    private Angle target_grabber= Rotations.of(1);
+    private Angle target_grabber;
     private final GrabberIOInputs inputs_;
     private GrabberStates states;
     public int ejectswitch;
@@ -39,7 +39,7 @@ public class GrabberSubsystem extends SubsystemBase{
         io= io_;
         ejectswitch=0;
         inputs_= new GrabberIOInputs();
-        target_grabber= Rotations.zero();
+        target_grabber= Rotations.of(1);
         states= GrabberStates.Stationary;
     }
 
@@ -105,6 +105,7 @@ public class GrabberSubsystem extends SubsystemBase{
 
     public Command collectCoral(){
         return runOnce(() -> {
+            io_.setGrabberTarget(target_grabber);
             if(hasCoralBool()==false){
                 io_.setGrabberVoltage(Volts.of(1));
                 if(hasCoralBool()==true){
@@ -116,6 +117,7 @@ public class GrabberSubsystem extends SubsystemBase{
 
     public Command ejectCoral(){
         return runOnce(() -> {
+            io_.setGrabberTarget(target_grabber);
             if(hasCoralBool()==true || hasCoralBool()==false){
                 io_.setGrabberVoltage(Volts.of(1.2));
                 if(hasCoralBool()==false){
