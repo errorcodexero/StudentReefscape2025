@@ -36,7 +36,7 @@ public class GrabberSubsystem extends SubsystemBase{
 
     //Constructor
     public GrabberSubsystem(GrabberIO io){
-        io= io_;
+        io_=io;
         ejectswitch=0;
         inputs_= new GrabberIOInputs();
         target_grabber= Rotations.of(1);
