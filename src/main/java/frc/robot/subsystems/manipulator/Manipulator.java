@@ -3,7 +3,6 @@ package frc.robot.subsystems.manipulator;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.subsystems.manipulator.ManipulatorIO.ManipulatorIOInputs;
 
 
 public class Manipulator extends SubsystemBase {
