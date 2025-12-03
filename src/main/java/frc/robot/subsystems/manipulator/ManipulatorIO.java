@@ -14,6 +14,7 @@ import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.units.measure.LinearVelocity;
 import edu.wpi.first.units.measure.Power;
 import edu.wpi.first.units.measure.Voltage;
+import edu.wpi.first.wpilibj.sysid.SysIdRoutineLog;
 
 
 
@@ -56,17 +57,28 @@ public Current elevator2Current = Amps.of(0);
 public Power elevator2power= Watts.zero();
 public Power elevator2powerAvg = Watts.zero(); 
 
-
 //encoder 
 public Angle absoluteEncoder = Degrees.of(0);
 public double rawabsoluteEncoder = 0;
   
  // updating the inputs on the elevator 
    public default void updateInputs(ManipulatorIOInputs inputs) {}
-    public default void toggleSyncing()  {} }
+    public default void toggleSyncing()  {} 
      
     //need for SYS ID support 
-      
+    public default void logArmMotor(SysIdRoutineLog log) {}
+
+    public default void setElevatorMotorVoltage(double vol) {}
+
+    public default void logElevatorMotor(SysIdRoutineLog log) {}
+
+    // ELEVATOR METHODS
+    public default void setElevatorTarget(Distance dist) {}
+    public default void setElevatorPosition(Distance d) {} ;
+
+    // ARM METHODS
+    public default void setArmTarget(Angle angle) {}
+}
   
 
 
