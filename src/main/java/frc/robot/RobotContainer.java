@@ -46,7 +46,7 @@ public class RobotContainer {
     // Subsystems
     private final Drive drive_;
 
-    private final Manipulator manipulator_;
+    private final Manipulator manipulator;
     
     // Controller
     private final CommandXboxController gamepad_ = new CommandXboxController(0);
@@ -67,7 +67,7 @@ public class RobotContainer {
                         new ModuleIOTalonFX(TunerConstants.BackLeft),
                         new ModuleIOTalonFX(TunerConstants.BackRight));
 
-                manipulator_ = new Manipulator();
+                manipulator = new Manipulator();
                     
                 break;
             
@@ -81,7 +81,7 @@ public class RobotContainer {
                         new ModuleIOSim(TunerConstants.BackLeft),
                         new ModuleIOSim(TunerConstants.BackRight));
 
-                manipulator_ = new Manipulator();
+                manipulator = new Manipulator();
                     
                 break;
             
@@ -95,7 +95,7 @@ public class RobotContainer {
                         new ModuleIO() {},
                         new ModuleIO() {});
                 
-                manipulator_ = new Manipulator();
+                manipulator = new Manipulator();
                 break;
         }
         
