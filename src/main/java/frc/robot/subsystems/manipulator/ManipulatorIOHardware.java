@@ -15,5 +15,5 @@ public class ManipulatorIOHardware implements ManipulatorIO  {
     private DCMotorSim arm_Sim;
     private DCMotorSim elevator_Sim;
     private DutyCycleEncoderSim arm_encoder_sim;
-    private boolean encoder_motor_
+    private boolean encoder_motor_Synced;
 }
