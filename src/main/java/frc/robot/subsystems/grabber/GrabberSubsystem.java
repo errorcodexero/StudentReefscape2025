@@ -24,7 +24,8 @@ public class GrabberSubsystem extends SubsystemBase{
         Collecting,
         Stationary,
         Ejecting,
-        Grabbing
+        Grabbing,
+        Aligning
     }
     private final GrabberIO io_;
     //Figure out grabber target rotation
@@ -37,9 +38,8 @@ public class GrabberSubsystem extends SubsystemBase{
     //Constructor
     public GrabberSubsystem(GrabberIO io){
         io_=io;
-        ejectswitch=0;
         inputs_= new GrabberIOInputs();
-        target_grabber= Rotations.of(1);
+        target_grabber= Rotations.of(-0.4);
         states= GrabberStates.Stationary;
     }
 
@@ -50,25 +50,23 @@ public class GrabberSubsystem extends SubsystemBase{
         io_.updateInputs(inputs_);
         Logger.processInputs("Grabber", inputs_);
         Logger.recordOutput("Grabber/angle/target", target_grabber);
-        if(states== GrabberStates.Stationary){
+        if(states== GrabberStates.Collecting){
             if(hasCoralBool()==false){
                 collectCoral();
-                states=GrabberStates.Collecting;
-            }
-        } else if(states==GrabberStates.Collecting){
-            AlignCoral();
-            states=GrabberStates.Ejecting;
-        } else if(states== GrabberStates.Ejecting){
-            ejectCoral();
-            if(ejectswitch==1){
-                ejectAlgae();
                 states=GrabberStates.Stationary;
             }
-            states= GrabberStates.Grabbing;
+            states= GrabberStates.Aligning;
+        } else if(states==GrabberStates.Aligning) {
+            AlignCoral();
+            states=GrabberStates.Stationary;
+        } else if(states== GrabberStates.Ejecting){
+            ejectCoral();
+            states= GrabberStates.Stationary;
         } else if(states== GrabberStates.Grabbing){
             grabAlgae();
-            ejectswitch=1;
-            states= GrabberStates.Ejecting;
+            states= GrabberStates.Stationary;
+        } else if(states== GrabberStates.Stationary){
+            break;
         }
     }
     
@@ -82,8 +80,7 @@ public class GrabberSubsystem extends SubsystemBase{
         }
         return false;
     }
-//ask "not"
-//Ask grabber angle
+
     public boolean hasCoralBool(){
         if(inputs_.coralSensor){
             inputs_.hasCoral= true;
